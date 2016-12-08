@@ -1,0 +1,16 @@
+OpenMP
+
+    OpenMP reference: Specification of OpenMP 3.0 API for C/C++. You may be more interested in OpenMP support in gcc 4.4.7 (the compiler on Bass).
+    Bass-specific material
+        Getting started on Bass.
+        To get accurate performance information run your programs on a dedicated node as a batch job with a shell script myjob using
+        qsub -pe smp 16 myjob
+        or interactively via
+        qlogin -pe smp 16
+        Do not park yourself on this node as everyone else in the class will be held up.
+        A directory with the sample diffusion program discussed in class.
+        Command lines for the compilation and execution of programs on bass.unc.edu.
+            C compilation to create a sequential program (compiler ignores OpenMP directives and does not link with the OpenMP runtime library):
+            gcc -O3 -o prog prog.c (Gnu C compiler 4.4.7)
+            C compilation to create a parallel program (OpenMP 3.0 directives honored and program linked with the OpenMP runtime library)
+            gcc -fopenmp -O3 -o prog prog.c (Gnu C compiler 4.4.7) 
