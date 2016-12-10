@@ -55,10 +55,10 @@ int main(int argc,char *argv[]){
 	int n; //size of array
 	double t1,t2;//times
 	n=atoi(argv[1]);
-	printf("n is %d\n",n);
-	printf("maxThreads= 1\n",omp_get_max_threads());
+	//printf("n is %d\n",n);
+	//printf("maxThreads= 1\n",omp_get_max_threads());
 	double *data=(double*)malloc(n * sizeof(double));
-	puts("populating array");
+	//puts("populating array");
 	double toLoad;
 	int i;
 	#pragma omp parallel for shared(data) private (i)
@@ -67,16 +67,16 @@ int main(int argc,char *argv[]){
 		if((rand()%2))toLoad*=-1;
 		data[i]=toLoad;
 	}
-	puts("start sort");
+	//puts("start sort");
 	t1=omp_get_wtime();
 	quicksort(data,0,n-1,n);//do sort
 	t2=omp_get_wtime();
-	puts("done sorting...now checking array");
+	//puts("done sorting...now checking array");
 	//isSorted(data,n);
 	//puts("final array:");
 	//printArray(data,n);
-	printf("Time taken in first sequential partition: %f",t2-t1);
-	printf("\nEND\n\n\n");
+	printf("%d,%d,%f\n",n,omp_get_max_threads(),t2-t1);
+	//printf("\nEND\n\n\n");
 	exit(0);
 	
 }

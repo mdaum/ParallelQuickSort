@@ -76,10 +76,10 @@ int main(int argc,char *argv[]){
 	int seq_threshold = atoi(argv[2]);
 	n=atoi(argv[1]);
 	omp_set_num_threads(atoi(argv[3]));//doesn't matter in sequential version
-	printf("n is %d\n",n);
-	printf("maxThreads= %d\n",omp_get_max_threads());
+	//printf("n is %d\n",n);
+	//printf("maxThreads= %d\n",omp_get_max_threads());
 	double *data=(double*)malloc(n * sizeof(double));
-	puts("populating array");
+	//puts("populating array");
 	int i;
 	#pragma omp parallel for shared(data) private (i)
 	for(i=0;i<n;i++){
@@ -87,7 +87,7 @@ int main(int argc,char *argv[]){
 		if((rand()%2))toLoad*=-1;
 		data[i]=toLoad;
 	}
-	puts("start sort");
+	//puts("start sort");
 	t1=omp_get_wtime();
 	#pragma omp parallel
 	{
@@ -95,12 +95,12 @@ int main(int argc,char *argv[]){
 	quicksort(data,0,n-1,n,seq_threshold);//do sort
 	}
 	t2=omp_get_wtime();
-	puts("done sorting...now checking array");
-	isSorted(data,n);
+	//puts("done sorting...now checking array");
+	//isSorted(data,n);
 	//puts("final array:");
 	//printArray(data,n);
-	printf("Time taken in sort: %f",t2-t1);
-	printf("\nEND\n\n\n");
+		printf("%d,%d,%f\n",n,omp_get_max_threads(),t2-t1);
+	//printf("\nEND\n\n\n");
 	exit(0);
 	
 }

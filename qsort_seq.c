@@ -74,10 +74,10 @@ int main(int argc,char *argv[]){
 	quicksort(data,0,n-1,n);//do sort
 	t2=omp_get_wtime();
 	//puts("done sorting...now checking array");
-	isSorted(data,n);
+	//isSorted(data,n);
 	//puts("final array:");
 	//printArray(data,n);
-	printf("%f",t2-t1);
+	printf("%d,%d,%f\n",n,1,t2-t1);
 	//printf("\nEND\n\n\n");
 	exit(0);
 	
