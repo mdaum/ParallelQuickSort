@@ -80,10 +80,10 @@ int main(int argc,char *argv[]){
 	printf("maxThreads= %d\n",omp_get_max_threads());
 	double *data=(double*)malloc(n * sizeof(double));
 	puts("populating array");
-	double toLoad;
 	int i;
+	#pragma omp parallel for shared(data) private (i)
 	for(i=0;i<n;i++){
-		toLoad=(double)rand();
+		double toLoad=(double)rand();
 		if((rand()%2))toLoad*=-1;
 		data[i]=toLoad;
 	}
